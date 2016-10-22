@@ -1,0 +1,364 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: beGateway Payment\n"
+"POT-Creation-Date: 2016-10-23 00:41+0300\n"
+"PO-Revision-Date: 2016-10-23 00:44+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: begateway-payment.php\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. Plugin Name of the plugin/theme
+#: begateway-payment.php:103 begateway-payment.php:545
+msgid "beGateway Payment"
+msgstr "beGateway Payment"
+
+#: begateway-payment.php:120
+msgid "beGateway Payment Settings"
+msgstr "beGateway Payment настройки"
+
+#: begateway-payment.php:123
+msgid "Plugin Usage"
+msgstr "Использование плагина"
+
+#: begateway-payment.php:125
+msgid "There are a few ways you can use this plugin:"
+msgstr "Есть несколько способов, как вы можете использовать этот плагин:"
+
+#: begateway-payment.php:127
+msgid "Configure the options below and then add the shortcode"
+msgstr "Настройте указанные ниже параметры, а затем добавьте shortcode"
+
+#: begateway-payment.php:127
+msgid "to a post or page"
+msgstr "на пост или страницу"
+
+#: begateway-payment.php:128
+msgid "Call the function from a template file"
+msgstr "Вызовите функцию из файла шаблона"
+
+#: begateway-payment.php:129
+msgid "Use the <strong>beGateway Payment</strong> Widget from the Widgets menu"
+msgstr "Используйте <strong>beGateway Payment</strong> виджет из меню виджетов"
+
+#: begateway-payment.php:131
+msgid "Shortcode Parameters"
+msgstr "Параметры шорткодов"
+
+#: begateway-payment.php:132
+msgid ""
+"Optionally, you can add some more parameters in the above mentioned "
+"shortcode to customize the currency code, reference title, return page URL, "
+"tax etc. Below is a list of the supported parameters in the payment button "
+"shortcode"
+msgstr ""
+"При необходимости можно добавить некоторые дополнительные параметры в "
+"упомянутые выше шорткоды для настройки код валюты, заголовка оплаты и др. "
+"Ниже приводится список поддерживаемых параметров в шорткоде оплаты"
+
+#: begateway-payment.php:134
+msgid "Form CSS class"
+msgstr "CSS-класс формы"
+
+#: begateway-payment.php:135
+msgid "Title of proceed to payment button"
+msgstr "Текст кнопки оплаты"
+
+#: begateway-payment.php:136
+msgid "Payment button CSS class"
+msgstr "CSS-класс кнопки оплаты"
+
+#: begateway-payment.php:137
+msgid ""
+"Product or service name or the reason for the payment here. The visitors "
+"will see this text"
+msgstr ""
+"Название продукта или услуги или причина для оплаты. Посетители увидят этот "
+"текст"
+
+#: begateway-payment.php:138
+msgid ""
+"Set to 1 if you want to show ohter amount text box to your visitors so they "
+"can enter custom amount."
+msgstr ""
+"Передайте 1, если вы хотите, чтобы показывалось поле для ввода произвольной "
+"суммы платежа."
+
+#: begateway-payment.php:139
+msgid "Title for the other amount text box. The visitors will see this text."
+msgstr ""
+"Заголовок для поля ввода произвольной суммы. Посетители увидят этот текст."
+
+#: begateway-payment.php:140
+msgid ""
+"Set to 1 if you want your visitors to be able to enter a reference text like "
+"email, web address or name."
+msgstr ""
+"Передайте 1, если вы хотите, чтобы ваши посетители имели возможность ввести "
+"текст описания за что оплата."
+
+#: begateway-payment.php:141
+msgid ""
+"Title for the Reference text box (ie. your web address). The visitors will "
+"see this text."
+msgstr ""
+"Заголовок для текстового поля описания оплаты. Посетители увидят этот текст."
+
+#: begateway-payment.php:142
+msgid ""
+"Payment options to show visitors. Usage sample: Product 1:10.00|Product "
+"2:15.00"
+msgstr ""
+"Варианты оплаты, чтобы показать посетителям. Пример использования: Продукт "
+"1:10.00|Продукт 2:15.00"
+
+#: begateway-payment.php:143
+msgid "This is the currency for your visitors to make payments"
+msgstr "Это валюта, в которой будут осуществляться платежи"
+
+#: begateway-payment.php:176
+msgid "Shop Id"
+msgstr "Идентификационный номер магазина"
+
+#: begateway-payment.php:178
+msgid "This is your shop id found in your backoffice"
+msgstr ""
+"Это ваш идентификатор магазина, найденный в вашем личном кабинете поставщика "
+"платежных услуг"
+
+#: begateway-payment.php:182
+msgid "Shop Key"
+msgstr "Ключ магазина"
+
+#: begateway-payment.php:184
+msgid "This is your shop secret key found in your backoffice"
+msgstr ""
+"Это секретный ключ вашего магазина, найденный в вашем личном кабинете "
+"поставщика платежных услуг"
+
+#: begateway-payment.php:188
+msgid "Checkout Page Domain"
+msgstr "Домен платежной страницы"
+
+#: begateway-payment.php:190
+msgid "This is payment page domain of your payment service provider"
+msgstr "Это домен страницы оплаты поставщика платежных услуг"
+
+#: begateway-payment.php:195
+msgid "Choose Payment Currency"
+msgstr "Выбрать валюту платежа"
+
+#: begateway-payment.php:203
+msgid "This is the currency for your visitors to make Payments"
+msgstr "Это валюта, в которой будут осуществляться платежи"
+
+#: begateway-payment.php:207
+msgid "Payment Subject"
+msgstr "Предмет оплаты"
+
+#: begateway-payment.php:209
+msgid ""
+"Enter the Product or service name or the reason for the payment here. The "
+"visitors will see this text"
+msgstr ""
+"Введите описание продукта или услуги, за которые осуществляется оплата. "
+"Посетители увидят этот текст."
+
+#: begateway-payment.php:219
+msgid "Payment Option"
+msgstr "Настройки оплаты"
+
+#: begateway-payment.php:221
+msgid "Price"
+msgstr "Цена"
+
+#: begateway-payment.php:226
+msgid "Show Other Amount"
+msgstr "Показать другую сумму"
+
+#: begateway-payment.php:228
+msgid ""
+"Tick this checkbox if you want to show ohter amount text box to your "
+"visitors so they can enter custom amount."
+msgstr ""
+"Отметьте этот флажок, если вы хотите, чтобы показывалось поле для ввода "
+"произвольной суммы платежа."
+
+#: begateway-payment.php:232
+msgid "Other Amount Title"
+msgstr "Заголовок поля ввода произвольной суммы"
+
+#: begateway-payment.php:234
+msgid ""
+"Enter a title for the Other Amount text box. The visitors will see this text."
+msgstr ""
+"Введите заголовок для поля ввода произвольной суммы. Посетители увидят этот "
+"текст."
+
+#: begateway-payment.php:238
+msgid "Enable bankcard"
+msgstr "Включение банковской карты"
+
+#: begateway-payment.php:240
+msgid "Tick this checkbox if you want to accept bankcard payments."
+msgstr ""
+"Отметьте этот флажок, если вы хотите принимать платежи банковскими картами."
+
+#: begateway-payment.php:244
+msgid "Enable ERIP"
+msgstr "Включить оплату через ЕРИП"
+
+#: begateway-payment.php:246
+msgid "Tick this checkbox if you want to accept ERIP payments."
+msgstr "Отметьте этот флажок, если вы хотите принимать платежи ЕРИП."
+
+#: begateway-payment.php:250
+msgid "ERIP service code"
+msgstr "Код услуги ЕРИП"
+
+#: begateway-payment.php:252
+msgid "Enter your ERIP service code."
+msgstr "Введите код услуги ЕРИП."
+
+#: begateway-payment.php:256
+msgid "Show Reference Text Box"
+msgstr "Показать поле описания оплаты"
+
+#: begateway-payment.php:258
+msgid ""
+"Tick this checkbox if you want your visitors to be able to enter a reference "
+"text like email, web address or name."
+msgstr ""
+"Отметьте этот флажок, если вы хотите, чтобы ваши посетители имели "
+"возможность ввести текст описания за что оплата."
+
+#: begateway-payment.php:262
+msgid "Reference Text Box Title"
+msgstr "Заголовок для поля описания оплаты"
+
+#: begateway-payment.php:264
+msgid ""
+"Enter a title for the Reference text box (ie. Your Web Address). The "
+"visitors will see this text."
+msgstr ""
+"Введите заголовок для текстового поля описания оплаты. Посетители увидят "
+"этот текст."
+
+#: begateway-payment.php:268
+msgid "Require Visitor Personal Details"
+msgstr "Требуются личные данные посетителя"
+
+#: begateway-payment.php:270
+msgid ""
+"Tick this checkbox if you want your visitors to be required to enter "
+"personal details (name, address and etc) during payment process."
+msgstr ""
+"Отметьте этот флажок, если вы хотите, чтобы ваши посетители вводили личные "
+"данные (имя, адрес и т.д.) во время процесса оплаты."
+
+#: begateway-payment.php:274
+msgid "Notification URL"
+msgstr "URL для уведомлений"
+
+#: begateway-payment.php:276
+msgid ""
+"Optional Notification URL where beGateway will post messages about processed "
+"payments"
+msgstr ""
+"Необязательный URL для уведомлений, куда beGateway будет отправлять "
+"сообщения об обработанных платежей"
+
+#: begateway-payment.php:280
+msgid "Success URL"
+msgstr "URL для успешной оплаты"
+
+#: begateway-payment.php:282
+msgid ""
+"Success URL where your customer will be redirected after a successful payment"
+msgstr "URL, куда ваш клиент будет перенаправлен после успешной оплаты"
+
+#: begateway-payment.php:286
+msgid "Decline URL"
+msgstr "URL для ошибки оплаты"
+
+#: begateway-payment.php:288
+msgid ""
+"Decline URL where your customer will be redirected after a payment error"
+msgstr "URL, куда ваш клиент будет перенаправлен после ошибки оплаты"
+
+#: begateway-payment.php:292
+msgid "Fail URL"
+msgstr "URL для неудачной оплаты"
+
+#: begateway-payment.php:294
+msgid "Fail URL where your customer will be redirected after a failed payment"
+msgstr "URL, куда ваш клиент будет перенаправлен после неудачной оплаты"
+
+#: begateway-payment.php:298
+msgid "Cancel URL"
+msgstr "URL для отмены"
+
+#: begateway-payment.php:300
+msgid ""
+"Cancel URL where your customer will be redirected when a payment process is "
+"cancelled by the customer"
+msgstr ""
+"URL, куда ваш клиент будет перенаправлен, когда процесс оплаты был отменен "
+"вашим клиентом"
+
+#: begateway-payment.php:309
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: begateway-payment.php:352
+msgid "Pay"
+msgstr "Оплатить"
+
+#: begateway-payment.php:455
+msgid "No Description"
+msgstr "Нет описания"
+
+#: begateway-payment.php:526
+msgid "Error to acquire a payment token"
+msgstr "Ошибка получения токена на оплату"
+
+#: begateway-payment.php:544
+msgid "Widget beGateway Payment"
+msgstr "Виджет beGateway Payment"
+
+#: begateway-payment.php:581
+msgid "Title"
+msgstr "Заголовок"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/begateway/wordpress-payment-plugin"
+msgstr "https://github.com/begateway/wordpress-payment-plugin"
+
+#. Description of the plugin/theme
+msgid ""
+"Place the plugin shortcode at any of your pages and start to accept payments "
+"in WordPress instantly"
+msgstr ""
+"Поместите шорткод плагина на любую страницу и начните принимать оплату в "
+"WordPress"
+
+#. Author of the plugin/theme
+msgid "beGateway Team"
+msgstr "beGateway Team"
+
+#. Author URI of the plugin/theme
+msgid "https://begateway.com"
+msgstr "https://begateway.com"

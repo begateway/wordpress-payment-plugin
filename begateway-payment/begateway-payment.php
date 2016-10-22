@@ -323,7 +323,7 @@ function begateway_payment_parse_options($options) {
   for($i=0; $i<sizeof($opt); $i++) {
     list($product,$price) = explode(':', $opt[$i]);
     if ($product && $price)
-      $out[$product] = $price;
+      $out[$product] = "$product|$price";
   }
   return $out;
 }
@@ -334,7 +334,7 @@ function begateway_payment_parse_options_in_settings($options) {
     $pay_opt = $options['pay_opt'.$d];
     $pay_opt_val = $options['pay_opt_val'.$d];
     if($pay_opt&&$pay_opt_val){
-      $out[$pay_opt] = $pay_opt_val;
+      $out[$pay_opt] = "$pay_opt|$pay_opt_val";
     }
   }
   return $out;
@@ -430,7 +430,9 @@ function ajax_begateway_payment_callback() {
 
     $bgt_settings = get_option('bgt_settings');
 
-    $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : '|';
+    list($dsc, $amount) = explode("|", $amount);
+
     $other_amount = isset($_POST['other_amount']) ? $_POST['other_amount'] : '';
 
     $amount = str_replace(',', '.', $amount);
@@ -444,12 +446,17 @@ function ajax_begateway_payment_callback() {
     if (!empty($_POST['currency']))
       $currency = $_POST['currency'];
 
-    if($other_amount) {$amount = $other_amount;}
-    $payment_subject = isset($bgt_settings['payment_subject']) ? $bgt_settings['payment_subject'] : '';
+    if ($other_amount)
+      $amount = $other_amount;
 
-    $bp_text = isset($_POST['bp_text'] ) ? ' '.$_POST['bp_text'] : '';
-    if($payment_subject || $bp_text) {
-        $bp_text = $payment_subject.$bp_text;
+    $payment_subject = isset($bgt_settings['payment_subject']) ? $bgt_settings['payment_subject'] : NULL;
+    $bp_text = isset($_POST['bp_text'] ) ? ' '.$_POST['bp_text'] : NULL;
+    $dsc = empty($dsc) ? NULL : $dsc;
+
+    if($payment_subject || $bp_text || $dsc) {
+        $bp_text = array($payment_subject, $bp_text, $dsc);
+        $bp_text = array_filter( $bp_text, 'strlen' );
+        $bp_text = implode('. ', $bp_text);
     } else {
         $bp_text = __('No Description');
     }

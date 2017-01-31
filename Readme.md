@@ -38,6 +38,12 @@ Optionally, you can add some more parameters in the above mentioned shortcode to
   * **options** - Payment options to show visitors. Usage sample: "Product 1:10.00|Product 2:15.00"
   * **currency** - This is the currency for your visitors to make payments
 
+##### Shortcode usage example
+
+The shortcode will show a drop-down list with two products to pay: Product 1 with the 10.00 EUR price and Product 2 with the 20.00 EUR price.
+
+    [begateway_payment options="Product 1:10.00|Product 2:20.00" currency="EUR"]
+
 ### Notes
 
 Tested and developed with:
@@ -106,6 +112,12 @@ Issue pull requests or send feature requests.
   * **text_box_title** - Заголовок для текстового поля описания оплаты. Посетители увидят этот текст.
   * **options** - Payment options to show visitors. Usage sample: Product 1:10.00|Product 2:15.00
   * **currency** - Это валюта, в которой будут осуществляться платежи
+
+##### Пример использования шорткода
+
+Код, приведенный ниже, создаст на странице выпадающий список с двумя продуктами для оплаты: Product 1 с ценой 10.00 EUR и Product 2 с ценой 20.00 EUR.
+
+    [begateway_payment options="Product 1:10.00|Product 2:20.00" currency="EUR"]
 
 ### Примечания
 

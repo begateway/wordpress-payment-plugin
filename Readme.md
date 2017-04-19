@@ -27,16 +27,30 @@ There are a few ways you can use this plugin:
 
 Optionally, you can add some more parameters in the above mentioned shortcode to customize the currency code, reference title, return page URL, tax etc. Below is a list of the supported parameters in the payment button shortcode
 
-  * **class** - Form CSS class
-  * **button_text** - Title of proceed to payment button
-  * **button_class** - Payment button CSS class
-  * **payment_subject** - Product or service name or the reason for the payment here. The visitors will see this text
-  * **other_amount** - Set to 1 if you want to show ohter amount text box to your visitors so they can enter custom amount.
-  * **other_amount_title** - Title for the other amount text box. The visitors will see this text.
-  * **text_box** - Set to 1 if you want your visitors to be able to enter a reference text like email, web address or name.
-  * **text_box_title** - Title for the Reference text box (ie. your web address). The visitors will see this text.
-  * **options** - Payment options to show visitors. Usage sample: "Product 1:10.00|Product 2:15.00"
-  * **currency** - This is the currency for your visitors to make payments
+  * class - Form CSS class
+  * button_text - Title of proceed to payment button
+  * button_class - Payment button CSS class
+  * payment_subject - Product or service name or the reason for the payment here. The visitors will see this text
+  * other_amount - Set to 1 if you want to show ohter amount text box to your visitors so they can enter custom amount.
+  * other_amount_title - Title for the other amount text box. The visitors will see this text.
+  * text_box - Set to 1 if you want your visitors to be able to enter a reference text like email, web address or name.
+  * text_box_title - Title for the Reference text box (ie. your web address). The visitors will see this text.
+  * options - Payment options to show visitors. Usage sample: Product 1:10.00|Product 2:15.00
+  * type - Set to 1 if you want to show other amount text box to your visitors so they can enter custom amount.
+  * shop_id - This is your shop id found in your backoffice
+  * shop_key - This is your shop secret key found in your backoffice
+  * checkout_base - This is payment page domain of your payment service provide
+  * card - Set to 1 if you want to accept bankcard payments.
+  * erip - Set to 1 if you want to accept erip payments.
+  * erip_service_no - Your ERIP service code.
+  * personal_details - Set to 1 if you want your visitors to be required to enter personal details (name, address and etc) during payment process.
+  * notification_url - Notification URL where beGateway will post messages about processed payments.
+  * success_url - Success URL where your customer will be redirected after a successful payment
+  * decline_url - Decline URL where your customer will be redirected after a payment error
+  * fail_url - Fail URL where your customer will be redirected after a failed payment
+  * cancel_url - Cancel URL where your customer will be redirected when a payment process is cancelled by the customer
+  * language - Payment page language. Use two letter code e.g. en for English
+  * currency - Currency code (USD, EUR and etc) for your visitors to make payments
 
 ##### Shortcode usage example
 
@@ -102,16 +116,30 @@ Issue pull requests or send feature requests.
 
 При необходимости можно добавить некоторые дополнительные параметры в упомянутые выше шорткоды для настройки код валюты, заголовка оплаты и др. Ниже приводится список поддерживаемых параметров в шорткоде оплаты
 
-  * **class** - Form CSS class
-  * **button_text** - Title of proceed to payment button
-  * **button_class** - Payment button CSS class
-  * **payment_subject** - Название продукта или услуги или причина для оплаты. Посетители увидят этот текст
-  * **other_amount** - Передайте 1, если вы хотите, чтобы показывалось поле для ввода произвольной суммы платежа.
-  * **other_amount_title** - Заголовок для поля ввода произвольной суммы. Посетители увидят этот текст.
-  * **text_box** - Передайте 1, если вы хотите, чтобы ваши посетители имели возможность ввести текст описания за что оплата.
-  * **text_box_title** - Заголовок для текстового поля описания оплаты. Посетители увидят этот текст.
-  * **options** - Payment options to show visitors. Usage sample: Product 1:10.00|Product 2:15.00
-  * **currency** - Это валюта, в которой будут осуществляться платежи
+  * class - CSS-класс формы
+  * button_text - Текст кнопки оплаты
+  * button_class - CSS-класс кнопки оплаты
+  * payment_subject - Название продукта или услуги или причина для оплаты. Посетители увидят этот текст
+  * other_amount - Передайте 1, если вы хотите, чтобы показывалось поле для ввода произвольной суммы платежа.
+  * other_amount_title - Заголовок для поля ввода произвольной суммы. Посетители увидят этот текст.
+  * text_box - Передайте 1, если вы хотите, чтобы ваши посетители имели возможность ввести текст описания за что оплата.
+  * text_box_title - Заголовок для текстового поля описания оплаты. Посетители увидят этот текст.
+  * options - Варианты оплаты, чтобы показать посетителям. Пример использования: Продукт 1:10.00|Продукт 2:15.00
+  * type - Передайте 1, если вы хотите, чтобы показывалось поле для ввода произвольной суммы платежа.
+  * shop_id - Это ваш идентификатор магазина, найденный в вашем личном кабинете поставщика платежных услуг
+  * shop_key - Это секретный ключ вашего магазина, найденный в вашем личном кабинете поставщика платежных услуг
+  * checkout_base - Это домен страницы оплаты поставщика платежных услуг
+  * card - Передайте 1, если вы хотите принимать платежи банковскими картами.
+  * erip - Передайте 1, если вы хотите принимать платежи ЕРИП.
+  * erip_service_no - Код услуги ЕРИП.
+  * personal_details - Передайте 1, если вы хотите, чтобы ваши посетители вводили личные данные (имя, адрес и т.д.) во время процесса оплаты.
+  * notification_url - URL для уведомлений, куда beGateway будет отправлять сообщения об обработанных платежах
+  * success_url - URL, куда ваш клиент будет перенаправлен после успешной оплаты
+  * decline_url - URL, куда ваш клиент будет перенаправлен после ошибки оплаты
+  * fail_url - URL, куда ваш клиент будет перенаправлен после неудачной оплаты
+  * cancel_url - URL, куда ваш клиент будет перенаправлен, когда процесс оплаты был отменен вашим клиентом
+  * language - Язык страницы оплаты. Используйте двухбуквенный код. Например, для английской en
+  * currency - Код валюты (USD, EUR и т.д.) оплаты
 
 ##### Пример использования шорткода
 

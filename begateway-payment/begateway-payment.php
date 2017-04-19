@@ -3,7 +3,7 @@
 Plugin Name: beGateway Payment
 Plugin URI: https://github.com/begateway/wordpress-payment-plugin
 Description: Place the plugin shortcode at any of your pages and start to accept payments in WordPress instantly
-Version: 1.0
+Version: 1.5
 Author: beGateway Team
 Author URI: https://begateway.com
 License: MIT
@@ -66,22 +66,26 @@ function bgt_head_html(){
 <script type="text/javascript">
 jQuery(document).ready(function($){
 
- 	$(".bp_form form").submit(function(event) {
+ 	jQuery(".bp_form form").submit(function(event) {
     event.preventDefault();
 
-    dhis = $(this);
+    dhis = jQuery(this);
     var formData = dhis.serialize();
 
     dhis.find('.bp_loader').show();
 
-		$.ajax({
+		jQuery.ajax({
 			url: bgt.url,
 			type: 'POST',
 			dataType: 'json',
       data: formData + '&action=bp_show&nonce='+bgt.nonce,
 			success: function(data){
 				if(data.status) {
-					window.location.href = data.gourl;
+          if (window.location != window.parent.location) {
+            window.parent.location = data.gourl;
+          } else {
+					  window.location.href = data.gourl;
+          }
 				} else {
 				    dhis.find('.bp_loader').hide();
             dhis.find('.bp_result').html(data.message).show();
@@ -131,16 +135,30 @@ function bgt_options_page() {
         <h4><?php _e('Shortcode Parameters', 'begateway-payment'); ?></h4>
         <p><?php _e('Optionally, you can add some more parameters in the above mentioned shortcode to customize the currency code, reference title, return page URL, tax etc. Below is a list of the supported parameters in the payment button shortcode', 'begateway-payment'); ?></p>
         <ul>
-          <li><strong>class</strong> - <?php _e('Form CSS class');?></li>
-          <li><strong>button_text</strong> - <?php _e('Title of proceed to payment button');?></li>
-          <li><strong>button_class</strong> - <?php _e('Payment button CSS class');?></li>
+          <li><strong>class</strong> - <?php _e('Form CSS class', 'begateway-payment');?></li>
+          <li><strong>button_text</strong> - <?php _e('Title of proceed to payment button', 'begateway-payment');?></li>
+          <li><strong>button_class</strong> - <?php _e('Payment button CSS class', 'begateway-payment');?></li>
           <li><strong>payment_subject</strong> - <?php _e('Product or service name or the reason for the payment here. The visitors will see this text', 'begateway-payment'); ?></li>
           <li><strong>other_amount</strong> - <?php _e('Set to 1 if you want to show ohter amount text box to your visitors so they can enter custom amount.', 'begateway-payment'); ?></li>
           <li><strong>other_amount_title</strong> - <?php _e('Title for the other amount text box. The visitors will see this text.', 'begateway-payment'); ?></li>
           <li><strong>text_box</strong> - <?php _e('Set to 1 if you want your visitors to be able to enter a reference text like email, web address or name.', 'begateway-payment'); ?></li>
           <li><strong>text_box_title</strong> - <?php _e('Title for the Reference text box (ie. your web address). The visitors will see this text.', 'begateway-payment'); ?></li>
-          <li><strong>options</strong> - <?php _e('Payment options to show visitors. Usage sample: Product 1:10.00|Product 2:15.00');?></li>
-          <li><strong>currency</strong> - <?php _e('This is the currency for your visitors to make payments', 'begateway-payment'); ?></li>
+          <li><strong>options</strong> - <?php _e('Payment options to show visitors. Usage sample: Product 1:10.00|Product 2:15.00', 'begateway-payment');?></li>
+          <li><strong>type</strong> - <?php _e('Set to 1 if you want to show other amount text box to your visitors so they can enter custom amount.', 'begateway-payment'); ?></li>
+          <li><strong>shop_id</strong> - <?php _e('This is your shop id found in your backoffice', 'begateway-payment'); ?></li>
+          <li><strong>shop_key</strong> - <?php _e('This is your shop secret key found in your backoffice', 'begateway-payment'); ?></li>
+          <li><strong>checkout_base</strong> - <?php _e('This is payment page domain of your payment service provide', 'begateway-payment'); ?></li>
+          <li><strong>card</strong> - <?php _e('Set to 1 if you want to accept bankcard payments.', 'begateway-payment'); ?></li>
+          <li><strong>erip</strong> - <?php _e('Set to 1 if you want to accept erip payments.', 'begateway-payment'); ?></li>
+          <li><strong>erip_service_no</strong> - <?php _e('Your ERIP service code.', 'begateway-payment'); ?></li>
+          <li><strong>personal_details</strong> - <?php _e('Set to 1 if you want your visitors to be required to enter personal details (name, address and etc) during payment process.', 'begateway-payment'); ?></li>
+          <li><strong>notification_url</strong> - <?php _e('Notification URL where beGateway will post messages about processed payments.', 'begateway-payment'); ?></li>
+          <li><strong>success_url</strong> - <?php _e('Success URL where your customer will be redirected after a successful payment', 'begateway-payment'); ?></li>
+          <li><strong>decline_url</strong> - <?php _e('Decline URL where your customer will be redirected after a payment error', 'begateway-payment'); ?></li>
+          <li><strong>fail_url</strong> - <?php _e('Fail URL where your customer will be redirected after a failed payment', 'begateway-payment'); ?></li>
+          <li><strong>cancel_url</strong> - <?php _e('Cancel URL where your customer will be redirected when a payment process is cancelled by the customer', 'begateway-payment'); ?></li>
+          <li><strong>language</strong> - <?php _e('Payment page language. Use two letter code e.g. en for English', 'begateway-payment'); ?></li>
+          <li><strong>currency</strong> - <?php _e('Currency code (USD, EUR and etc) for your visitors to make payments', 'begateway-payment'); ?></li>
         </ul>
     </div>
     </div>
@@ -199,7 +217,7 @@ $bgt_settings_img = isset($bgt_settings['img']) ? $bgt_settings['img'] : '';
       <option value="RUB" <?php if ($currency=='RUB') echo 'selected';?> >RUB</option>
       <option value="BYN" <?php if ($currency=='BYN') echo 'selected';?> >BYN</option>
 		</select>
-    <p class="description"><?php _e('This is the currency for your visitors to make Payments', 'begateway-payment'); ?></p>
+    <p class="description"><?php _e('This is the currency for your visitors to make payments', 'begateway-payment'); ?></p>
     </td>
 </tr>
 <tr>
@@ -224,7 +242,7 @@ for ($d = 1; $d <= 6; $d++) {
 <tr>
     <th><label for="other_amount"><?php _e('Show Other Amount', 'begateway-payment'); ?></label></th>
     <td><input type="checkbox" id="other_amount" name="bgt_settings[other_amount]" value="1" <?php checked( $other_amount ); ?> />
-    <span class="description"><?php _e('Tick this checkbox if you want to show ohter amount text box to your visitors so they can enter custom amount.', 'begateway-payment'); ?></span>
+    <span class="description"><?php _e('Tick this checkbox if you want to show other amount text box to your visitors so they can enter custom amount.', 'begateway-payment'); ?></span>
     </td>
 </tr>
 <tr>
@@ -299,9 +317,6 @@ for ($d = 1; $d <= 6; $d++) {
     <p class="description"><?php _e('Cancel URL where your customer will be redirected when a payment process is cancelled by the customer', 'begateway-payment'); ?></p>
     </td>
 </tr>
-
-
-
     </table>
 
 			<p class="submit">
@@ -345,47 +360,52 @@ function begateway_payment_parse_options_in_settings($options) {
 /*-----------------------------------------------------------------------------------*/
 
 function begateway_payment_callback( $atts, $content = null ) {
-	    extract(shortcode_atts(array(
-            'type' => '',
-            'class'  => '',
-            'button_text'  => __('Pay', 'begateway-payment'),
-            'button_class'  => 'bp_submit',
-            'payment_subject' => '',
-            'other_amount' => '',
-            'other_amount_title' => '',
-            'text_box' => '',
-            'text_box_title' => '',
-            'options' => '',
-            'currency' => '',
-	    ), $atts));
+    $params = array(
+      'type' => '',
+      'class'  => '',
+      'button_text'  => __('Pay', 'begateway-payment'),
+      'button_class'  => 'bp_submit',
+      'payment_subject' => '',
+      'other_amount' => '',
+      'other_amount_title' => '',
+      'text_box' => '',
+      'text_box_title' => '',
+      'options' => '',
+      'currency' => '',
+      'shop_id' => '',
+      'shop_key' => '',
+      'checkout_base' => '',
+      'card' => '',
+      'erip' => '',
+      'erip_service_no' => '',
+      'personal_details' => '',
+      'notification_url' => '',
+      'success_url' => '',
+      'decline_url' => '',
+      'fail_url' => '',
+      'cancel_url' => '',
+      'img' => '',
+      'language' => ''
+    );
+    extract(shortcode_atts($params, $atts));
+
+    error_log(print_r($atts,true));
 
     $bgt_settings = get_option('bgt_settings');
 
-    if (empty($payment_subject) && isset($bgt_settings['payment_subject']))
-      $payment_subject = $bgt_settings['payment_subject'];
+    foreach($params as $p => $v) {
+      if (empty($$p) && isset($bgt_settings[$p]))
+        $$p = $bgt_settings[$p];
+      $_SESSION[$p] = $$p;
+    }
 
-    if (empty($other_amount) && isset($bgt_settings['other_amount']))
-      $other_amount = $bgt_settings['other_amount'];
+    error_log($success_url);
 
-    if (empty($other_amount_title) && isset($bgt_settings['other_amount_title']))
-      $other_amount_title = $bgt_settings['other_amount_title'];
-
-    if (empty($text_box) && isset($bgt_settings['text_box']))
-      $text_box = $bgt_settings['text_box'];
-
-    if (empty($text_box_title) && isset($bgt_settings['text_box_title']))
-      $text_box_title = $bgt_settings['text_box_title'];
-
-    if (empty($currency) && isset($bgt_settings['currency']))
-      $currency = $bgt_settings['currency'];
-
-
-    $out = '<div class="bp_form ' . $class . '"><form>';
-    $out .= '<input type="hidden" name="currency" value="'. $currency . '">';
+    $out = '<div class="bp_form ' . $class . '"><form id="begateway-payment-form">';
 
     if ($other_amount || $type=='1') {
         if($other_amount_title) {
-            $out .= '<div class="bp_label">'.$other_amount_title.' ('.$bgt_settings['currency'].')</div>';
+            $out .= '<div class="bp_label">'.$other_amount_title.' ('.$currency.')</div>';
         }
         $out .= '<div class="bp_input"><input type="text" name="other_amount" required >';
         $out .= '</div>';
@@ -441,15 +461,17 @@ function ajax_begateway_payment_callback() {
     $other_amount = str_replace(',', '.', $other_amount);
     $other_amount = strval(floatval($other_amount));
 
-    $currency = isset($bgt_settings['currency']) ? $bgt_settings['currency'] : 'USD';
-
-    if (!empty($_POST['currency']))
-      $currency = $_POST['currency'];
+    $currency = $_SESSION['currency'];
+    if (empty($currency))
+      $currency = (empty($currency) && isset($bgt_settings['currency'])) ? $bgt_settings['currency'] : 'USD';
 
     if ($other_amount)
       $amount = $other_amount;
 
-    $payment_subject = isset($bgt_settings['payment_subject']) ? $bgt_settings['payment_subject'] : NULL;
+    $payment_subject = $_SESSION['payment_subject'];
+    if (empty($payment_subject))
+      $payment_subject = isset($bgt_settings['payment_subject']) ? $bgt_settings['payment_subject'] : NULL;
+
     $bp_text = isset($_POST['bp_text'] ) ? ' '.$_POST['bp_text'] : NULL;
     $dsc = empty($dsc) ? NULL : $dsc;
 
@@ -461,23 +483,53 @@ function ajax_begateway_payment_callback() {
         $bp_text = __('No Description');
     }
 
-    $lang = substr(get_bloginfo('language'), 0, 2);
+    $lang = $_SESSION['language'];
+    if (empty($lang))
+      $lang = substr(get_bloginfo('language'), 0, 2);
 
     if(!$lang) {$lang = 'en';}
 
-    $shop_id = $bgt_settings['shop_id'];
-    $shop_key = $bgt_settings['shop_key'];
-    $checkout_base = $bgt_settings['checkout_base'];
+    $shop_id = $_SESSION['shop_id'];
+    if (empty($shop_id))
+      $shop_id = $bgt_settings['shop_id'];
 
-    $notification_url = esc_url($bgt_settings['notification_url']);
-    $cancel_url = $bgt_settings['cancel_url'] ? esc_url($bgt_settings['cancel_url']) : get_site_url();
-    $fail_url = $bgt_settings['fail_url'] ? esc_url($bgt_settings['fail_url']) : get_site_url();
-    $decline_url = $bgt_settings['decline_url'] ? esc_url($bgt_settings['decline_url']) : get_site_url();
-    $success_url = $bgt_settings['success_url'] ? esc_url($bgt_settings['success_url']) : get_site_url();
+    $shop_key = $_SESSION['shop_key'];
+    if (empty($shop_key))
+      $shop_key = $bgt_settings['shop_key'];
 
-    $card = $bgt_settings['card'] ? $bgt_settings['card'] : '';
-    $erip = $bgt_settings['erip'] ? $bgt_settings['erip'] : '';
-    $erip_service_no = $bgt_settings['erip_service_no'] ? $bgt_settings['erip_service_no'] : '';
+    $checkout_base = $_SESSION['checkout_base'];
+    if (empty($checkout_base))
+      $checkout_base = $bgt_settings['checkout_base'];
+
+    $notification_url = $_SESSION['notification_url'];
+    $cancel_url = $_SESSION['cancel_url'];
+    $fail_url = $_SESSION['fail_url'];
+    $decline_url = $_SESSION['decline_url'];
+    $success_url = $_SESSION['success_url'];
+
+    if (empty($notification_url))
+      $notification_url = esc_url($bgt_settings['notification_url']);
+
+    if (empty($cancel_url))
+      $cancel_url = $bgt_settings['cancel_url'] ? esc_url($bgt_settings['cancel_url']) : get_site_url();
+    if (empty($fail_url))
+      $fail_url = $bgt_settings['fail_url'] ? esc_url($bgt_settings['fail_url']) : get_site_url();
+    if (empty($decline_url))
+      $decline_url = $bgt_settings['decline_url'] ? esc_url($bgt_settings['decline_url']) : get_site_url();
+    if (empty($success_url))
+      $success_url = $bgt_settings['success_url'] ? esc_url($bgt_settings['success_url']) : get_site_url();
+
+    $card = $_SESSION['card'];
+    $erip = $_SESSION['erip'];
+    $erip_service_no = $_SESSION['erip_service_no'];
+
+    if (empty($card))
+      $card = $bgt_settings['card'] ? $bgt_settings['card'] : '';
+    if (empty($erip))
+      $erip = $bgt_settings['erip'] ? $bgt_settings['erip'] : '';
+
+    if (empty($erip_service_no))
+      $erip_service_no = $bgt_settings['erip_service_no'] ? $bgt_settings['erip_service_no'] : '';
 
     if (!class_exists('beGateway')) {
       require_once dirname(  __FILE__  ) . '/lib/beGateway/lib/beGateway.php';
@@ -592,8 +644,13 @@ class widget_begateway_payment extends WP_Widget {
 
 	}
 }
+
 function register_begateway_payment_widget() {
     register_widget( 'widget_begateway_payment' );
 }
 add_action( 'widgets_init', 'register_begateway_payment_widget' );
-?>
+
+function begateway_payment_register_session(){
+    if(!session_id()) session_start();
+}
+add_action('init','begateway_payment_register_session');

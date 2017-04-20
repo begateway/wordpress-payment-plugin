@@ -389,8 +389,6 @@ function begateway_payment_callback( $atts, $content = null ) {
     );
     extract(shortcode_atts($params, $atts));
 
-    error_log(print_r($atts,true));
-
     $bgt_settings = get_option('bgt_settings');
 
     foreach($params as $p => $v) {
@@ -398,8 +396,6 @@ function begateway_payment_callback( $atts, $content = null ) {
         $$p = $bgt_settings[$p];
       $_SESSION[$p] = $$p;
     }
-
-    error_log($success_url);
 
     $out = '<div class="bp_form ' . $class . '"><form id="begateway-payment-form">';
 

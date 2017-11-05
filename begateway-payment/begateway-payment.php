@@ -3,7 +3,7 @@
 Plugin Name: beGateway Payment
 Plugin URI: https://github.com/begateway/wordpress-payment-plugin
 Description: Place the plugin shortcode at any of your pages and start to accept payments in WordPress instantly
-Version: 1.5
+Version: 1.5.1
 Author: beGateway Team
 Author URI: https://begateway.com
 License: MIT
@@ -593,10 +593,10 @@ add_action( 'wp_ajax_nopriv_bp_show', 'ajax_begateway_payment_callback' );
 /*-----------------------------------------------------------------------------------*/
 class widget_begateway_payment extends WP_Widget {
 
-	function widget_begateway_payment() {
+	function __construct() {
 	/*Constructor*/
 		$widget_ops = array('classname' => 'widget_begateway_payment ', 'description' => __( 'Widget beGateway Payment' , 'begateway-payment' ) );
-		$this->__construct('begateway_payment', __( 'beGateway Payment' , 'begateway-payment' ), $widget_ops);
+		parent::__construct('begateway_payment', __( 'beGateway Payment' , 'begateway-payment' ), $widget_ops);
     }
 
 	function widget($args, $instance) {

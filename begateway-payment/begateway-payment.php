@@ -3,7 +3,7 @@
 Plugin Name: beGateway Payment
 Plugin URI: https://github.com/begateway/wordpress-payment-plugin
 Description: Place the plugin shortcode at any of your pages and start to accept payments in WordPress instantly
-Version: 1.5.1
+Version: 1.6.0
 Author: beGateway Team
 Author URI: https://begateway.com
 License: MIT
@@ -188,6 +188,7 @@ $decline_url = isset($bgt_settings['decline_url']) ? $bgt_settings['decline_url'
 $fail_url = isset($bgt_settings['fail_url']) ? $bgt_settings['fail_url'] : '';
 $cancel_url = isset($bgt_settings['cancel_url']) ? $bgt_settings['cancel_url'] : '';
 $bgt_settings_img = isset($bgt_settings['img']) ? $bgt_settings['img'] : '';
+$test_mode = isset($bgt_settings['test_mode']) ? $bgt_settings['test_mode'] : '';
 ?>
 <tr>
     <th><label for="shop_id"><?php _e('Shop Id', 'begateway-payment'); ?></label></th>
@@ -315,6 +316,12 @@ for ($d = 1; $d <= 6; $d++) {
     <th><label for="cancel_url"><?php _e('Cancel URL', 'begateway-payment'); ?></label></th>
     <td><input type="text" id="cancel_url" class="regular-text" name="bgt_settings[cancel_url]" value="<?php echo $cancel_url; ?>" placeholder="http://www.example.com/cancel"/>
     <p class="description"><?php _e('Cancel URL where your customer will be redirected when a payment process is cancelled by the customer', 'begateway-payment'); ?></p>
+    </td>
+</tr>
+<tr>
+    <th><label for="test_mode"><?php _e('Test mode', 'begateway-payment'); ?></label></th>
+    <td><input type="checkbox" id="test_mode" name="bgt_settings[test_mode]" value="1" <?php checked( $test_mode ); ?> />
+    <span class="description"><?php _e('Tick this checkbox to enable test mode', 'begateway-payment'); ?></span>
     </td>
 </tr>
     </table>
@@ -524,11 +531,14 @@ function ajax_begateway_payment_callback() {
     if (empty($erip))
       $erip = $bgt_settings['erip'] ? $bgt_settings['erip'] : '';
 
+    if (empty($test_mode))
+      $test_mode = $bgt_settings['test_mode'] ? $bgt_settings['test_mode'] : '';
+
     if (empty($erip_service_no))
       $erip_service_no = $bgt_settings['erip_service_no'] ? $bgt_settings['erip_service_no'] : '';
 
-    if (!class_exists('beGateway')) {
-      require_once dirname(  __FILE__  ) . '/lib/beGateway/lib/beGateway.php';
+    if (!class_exists('BeGateway')) {
+      require_once dirname(  __FILE__  ) . '/lib/beGateway/lib/BeGateway.php';
     }
 
     \beGateway\Settings::$shopId  = $shop_id;
@@ -548,8 +558,18 @@ function ajax_begateway_payment_callback() {
     $transaction->setDeclineUrl($decline_url);
     $transaction->setFailUrl($fail_url);
     $transaction->setCancelUrl($cancel_url);
-    if (!isset($bgt_settings['personal_details']))
-      $transaction->setAddressHidden();
+
+    if (isset($bgt_settings['personal_details'])) {
+      $transaction->setFirstNameVisible();
+      $transaction->setLastNameVisible();
+      $transaction->setCityVisible();
+      $transaction->setZipVisible();
+      $transaction->setCountryVisible();
+      $transaction->setEmailVisible();
+      $transaction->setStateVisible();
+    }
+
+    $transaction->setTestMode(!empty($test_mode));
 
     if (!empty($card)) {
       $cc = new \beGateway\PaymentMethod\CreditCard;

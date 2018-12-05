@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beGateway Payment\n"
-"POT-Creation-Date: 2017-04-19 17:07+0300\n"
-"PO-Revision-Date: 2017-04-19 17:08+0300\n"
+"POT-Creation-Date: 2018-12-05 19:37+0300\n"
+"PO-Revision-Date: 2018-12-05 19:37+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #. Plugin Name of the plugin/theme
-#: begateway-payment.php:107 begateway-payment.php:603
+#: begateway-payment.php:107 begateway-payment.php:619
 msgid "beGateway Payment"
 msgstr "beGateway Payment"
 
@@ -133,13 +133,13 @@ msgstr ""
 "Передайте 1, если вы хотите, чтобы показывалось поле для ввода произвольной "
 "суммы платежа."
 
-#: begateway-payment.php:148 begateway-payment.php:195
+#: begateway-payment.php:148 begateway-payment.php:196
 msgid "This is your shop id found in your backoffice"
 msgstr ""
 "Это ваш идентификатор магазина, найденный в вашем личном кабинете поставщика "
 "платежных услуг"
 
-#: begateway-payment.php:149 begateway-payment.php:201
+#: begateway-payment.php:149 begateway-payment.php:202
 msgid "This is your shop secret key found in your backoffice"
 msgstr ""
 "Это секретный ключ вашего магазина, найденный в вашем личном кабинете "
@@ -176,21 +176,21 @@ msgstr ""
 "URL для уведомлений, куда beGateway будет отправлять сообщения об "
 "обработанных платежах"
 
-#: begateway-payment.php:156 begateway-payment.php:299
+#: begateway-payment.php:156 begateway-payment.php:300
 msgid ""
 "Success URL where your customer will be redirected after a successful payment"
 msgstr "URL, куда ваш клиент будет перенаправлен после успешной оплаты"
 
-#: begateway-payment.php:157 begateway-payment.php:305
+#: begateway-payment.php:157 begateway-payment.php:306
 msgid ""
 "Decline URL where your customer will be redirected after a payment error"
 msgstr "URL, куда ваш клиент будет перенаправлен после ошибки оплаты"
 
-#: begateway-payment.php:158 begateway-payment.php:311
+#: begateway-payment.php:158 begateway-payment.php:312
 msgid "Fail URL where your customer will be redirected after a failed payment"
 msgstr "URL, куда ваш клиент будет перенаправлен после неудачной оплаты"
 
-#: begateway-payment.php:159 begateway-payment.php:317
+#: begateway-payment.php:159 begateway-payment.php:318
 msgid ""
 "Cancel URL where your customer will be redirected when a payment process is "
 "cancelled by the customer"
@@ -208,35 +208,35 @@ msgstr ""
 msgid "Currency code (USD, EUR and etc) for your visitors to make payments"
 msgstr "Код валюты (USD, EUR и т.д.) оплаты"
 
-#: begateway-payment.php:193
+#: begateway-payment.php:194
 msgid "Shop Id"
 msgstr "Идентификационный номер магазина"
 
-#: begateway-payment.php:199
+#: begateway-payment.php:200
 msgid "Shop Key"
 msgstr "Ключ магазина"
 
-#: begateway-payment.php:205
+#: begateway-payment.php:206
 msgid "Checkout Page Domain"
 msgstr "Домен платежной страницы"
 
-#: begateway-payment.php:207
+#: begateway-payment.php:208
 msgid "This is payment page domain of your payment service provider"
 msgstr "Это домен страницы оплаты поставщика платежных услуг"
 
-#: begateway-payment.php:212
+#: begateway-payment.php:213
 msgid "Choose Payment Currency"
 msgstr "Выбрать валюту платежа"
 
-#: begateway-payment.php:220
+#: begateway-payment.php:221
 msgid "This is the currency for your visitors to make payments"
 msgstr "Это валюта, в которой будут осуществляться платежи"
 
-#: begateway-payment.php:224
+#: begateway-payment.php:225
 msgid "Payment Subject"
 msgstr "Предмет оплаты"
 
-#: begateway-payment.php:226
+#: begateway-payment.php:227
 msgid ""
 "Enter the Product or service name or the reason for the payment here. The "
 "visitors will see this text"
@@ -244,19 +244,19 @@ msgstr ""
 "Введите описание продукта или услуги, за которые осуществляется оплата. "
 "Посетители увидят этот текст."
 
-#: begateway-payment.php:236
+#: begateway-payment.php:237
 msgid "Payment Option"
 msgstr "Настройки оплаты"
 
-#: begateway-payment.php:238
+#: begateway-payment.php:239
 msgid "Price"
 msgstr "Цена"
 
-#: begateway-payment.php:243
+#: begateway-payment.php:244
 msgid "Show Other Amount"
 msgstr "Показать другую сумму"
 
-#: begateway-payment.php:245
+#: begateway-payment.php:246
 msgid ""
 "Tick this checkbox if you want to show other amount text box to your "
 "visitors so they can enter custom amount."
@@ -264,47 +264,47 @@ msgstr ""
 "Отметьте этот флажок, если вы хотите, чтобы показывалось поле для ввода "
 "произвольной суммы платежа."
 
-#: begateway-payment.php:249
+#: begateway-payment.php:250
 msgid "Other Amount Title"
 msgstr "Заголовок поля ввода произвольной суммы"
 
-#: begateway-payment.php:251
+#: begateway-payment.php:252
 msgid ""
 "Enter a title for the Other Amount text box. The visitors will see this text."
 msgstr ""
 "Введите заголовок для поля ввода произвольной суммы. Посетители увидят этот "
 "текст."
 
-#: begateway-payment.php:255
+#: begateway-payment.php:256
 msgid "Enable bankcard"
 msgstr "Включение банковской карты"
 
-#: begateway-payment.php:257
+#: begateway-payment.php:258
 msgid "Tick this checkbox if you want to accept bankcard payments."
 msgstr ""
 "Отметьте этот флажок, если вы хотите принимать платежи банковскими картами."
 
-#: begateway-payment.php:261
+#: begateway-payment.php:262
 msgid "Enable ERIP"
 msgstr "Включить оплату через ЕРИП"
 
-#: begateway-payment.php:263
+#: begateway-payment.php:264
 msgid "Tick this checkbox if you want to accept ERIP payments."
 msgstr "Отметьте этот флажок, если вы хотите принимать платежи ЕРИП."
 
-#: begateway-payment.php:267
+#: begateway-payment.php:268
 msgid "ERIP service code"
 msgstr "Код услуги ЕРИП"
 
-#: begateway-payment.php:269
+#: begateway-payment.php:270
 msgid "Enter your ERIP service code."
 msgstr "Введите код услуги ЕРИП."
 
-#: begateway-payment.php:273
+#: begateway-payment.php:274
 msgid "Show Reference Text Box"
 msgstr "Показать поле описания оплаты"
 
-#: begateway-payment.php:275
+#: begateway-payment.php:276
 msgid ""
 "Tick this checkbox if you want your visitors to be able to enter a reference "
 "text like email, web address or name."
@@ -312,11 +312,11 @@ msgstr ""
 "Отметьте этот флажок, если вы хотите, чтобы ваши посетители имели "
 "возможность ввести текст описания за что оплата."
 
-#: begateway-payment.php:279
+#: begateway-payment.php:280
 msgid "Reference Text Box Title"
 msgstr "Заголовок для поля описания оплаты"
 
-#: begateway-payment.php:281
+#: begateway-payment.php:282
 msgid ""
 "Enter a title for the Reference text box (ie. Your Web Address). The "
 "visitors will see this text."
@@ -324,11 +324,11 @@ msgstr ""
 "Введите заголовок для текстового поля описания оплаты. Посетители увидят "
 "этот текст."
 
-#: begateway-payment.php:285
+#: begateway-payment.php:286
 msgid "Require Visitor Personal Details"
 msgstr "Требуются личные данные посетителя"
 
-#: begateway-payment.php:287
+#: begateway-payment.php:288
 msgid ""
 "Tick this checkbox if you want your visitors to be required to enter "
 "personal details (name, address and etc) during payment process."
@@ -336,11 +336,11 @@ msgstr ""
 "Отметьте этот флажок, если вы хотите, чтобы ваши посетители вводили личные "
 "данные (имя, адрес и т.д.) во время процесса оплаты."
 
-#: begateway-payment.php:291
+#: begateway-payment.php:292
 msgid "Notification URL"
 msgstr "URL для уведомлений"
 
-#: begateway-payment.php:293
+#: begateway-payment.php:294
 msgid ""
 "Optional Notification URL where beGateway will post messages about processed "
 "payments"
@@ -348,43 +348,51 @@ msgstr ""
 "Необязательный URL для уведомлений, куда beGateway будет отправлять "
 "сообщения об обработанных платежей"
 
-#: begateway-payment.php:297
+#: begateway-payment.php:298
 msgid "Success URL"
 msgstr "URL для успешной оплаты"
 
-#: begateway-payment.php:303
+#: begateway-payment.php:304
 msgid "Decline URL"
 msgstr "URL для ошибки оплаты"
 
-#: begateway-payment.php:309
+#: begateway-payment.php:310
 msgid "Fail URL"
 msgstr "URL для неудачной оплаты"
 
-#: begateway-payment.php:315
+#: begateway-payment.php:316
 msgid "Cancel URL"
 msgstr "URL для отмены"
 
-#: begateway-payment.php:323
+#: begateway-payment.php:322
+msgid "Test mode"
+msgstr "Тестовый режим"
+
+#: begateway-payment.php:324
+msgid "Tick this checkbox to enable test mode"
+msgstr "Отметьте этот флажок, чтобы включить режим тестирования"
+
+#: begateway-payment.php:330
 msgid "Save Changes"
 msgstr "Сохранить изменения"
 
-#: begateway-payment.php:366
+#: begateway-payment.php:373
 msgid "Pay"
 msgstr "Оплатить"
 
-#: begateway-payment.php:483
+#: begateway-payment.php:486
 msgid "No Description"
 msgstr "Нет описания"
 
-#: begateway-payment.php:584
+#: begateway-payment.php:600
 msgid "Error to acquire a payment token"
 msgstr "Ошибка получения токена на оплату"
 
-#: begateway-payment.php:602
+#: begateway-payment.php:618
 msgid "Widget beGateway Payment"
 msgstr "Виджет beGateway Payment"
 
-#: begateway-payment.php:639
+#: begateway-payment.php:655
 msgid "Title"
 msgstr "Заголовок"
 

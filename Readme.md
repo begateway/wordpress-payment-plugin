@@ -78,9 +78,9 @@ payments with a demo gateway.
 Use the test data to make a test payment:
 
   * card number __4200000000000000__
-  * card name __John Doe__
-  * card expiry month __01__ to get a success payment
-  * card expiry month __10__ to get a failed payment
+  * card name __JOHN DOE__
+  * card expiry date __01/30__ to get a success payment
+  * card expiry date __10/30__ to get a failed payment
   * CVC __123__
 
 ### Contributing
@@ -167,7 +167,7 @@ Issue pull requests or send feature requests.
 Используйте следующий тестовый набор для тестового платежа:
 
   * номер карты __4200000000000000__
-  * имя на карте __John Doe__
-  * месяц срока действия карты __01__, чтобы получить успешный платеж
-  * месяц срока действия карты __10__, чтобы получить неуспешный платеж
+  * имя на карте __JOHN DOE__
+  * срок действия карты __01/30__, чтобы получить успешный платеж
+  * срок действия карты __10/30__, чтобы получить неуспешный платеж
   * CVC __123__

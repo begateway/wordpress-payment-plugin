@@ -3,7 +3,7 @@
 Plugin Name: beGateway Payment
 Plugin URI: https://github.com/begateway/wordpress-payment-plugin
 Description: Place the plugin shortcode at any of your pages and start to accept payments in WordPress instantly
-Version: 1.6.1
+Version: 1.7.0
 Author: beGateway Team
 Author URI: https://begateway.com
 License: MIT
@@ -140,9 +140,12 @@ function bgt_options_page() {
           <li><strong>shop_key</strong> - <?php _e('This is your shop secret key found in your backoffice', 'begateway-payment'); ?></li>
           <li><strong>checkout_base</strong> - <?php _e('This is payment page domain of your payment service provide', 'begateway-payment'); ?></li>
           <li><strong>card</strong> - <?php _e('Set to 1 if you want to accept bankcard payments.', 'begateway-payment'); ?></li>
+          <li><strong>halva</strong> - <?php _e('Set to 1 if you want to accept halva payments.', 'begateway-payment'); ?></li>
           <li><strong>erip</strong> - <?php _e('Set to 1 if you want to accept erip payments.', 'begateway-payment'); ?></li>
           <li><strong>erip_service_no</strong> - <?php _e('Your ERIP service code.', 'begateway-payment'); ?></li>
-          <li><strong>personal_details</strong> - <?php _e('Set to 1 if you want your visitors to be required to enter personal details (name, address and etc) during payment process.', 'begateway-payment'); ?></li>
+          <li><strong>personal_details</strong> - <?php _e('Set to 1 if you want your visitors to be required to enter personal name details during payment process.', 'begateway-payment'); ?></li>
+          <li><strong>personal_email</strong> - <?php _e('Set to 1 if you want your visitors to be required to enter personal email details during payment process.', 'begateway-payment'); ?></li>
+          <li><strong>personal_address</strong> - <?php _e('Set to 1 if you want your visitors to be required to enter personal address details during payment process.', 'begateway-payment'); ?></li>
           <li><strong>notification_url</strong> - <?php _e('Notification URL where beGateway will post messages about processed payments.', 'begateway-payment'); ?></li>
           <li><strong>success_url</strong> - <?php _e('Success URL where your customer will be redirected after a successful payment', 'begateway-payment'); ?></li>
           <li><strong>decline_url</strong> - <?php _e('Decline URL where your customer will be redirected after a payment error', 'begateway-payment'); ?></li>
@@ -168,11 +171,14 @@ $payment_subject = isset($bgt_settings['payment_subject']) ? $bgt_settings['paym
 $other_amount = isset($bgt_settings['other_amount']) ? $bgt_settings['other_amount'] : '';
 $other_amount_title = isset($bgt_settings['other_amount_title']) ? $bgt_settings['other_amount_title'] : '';
 $card = isset($bgt_settings['card']) ? $bgt_settings['card'] : '1';
+$halva = isset($bgt_settings['halva']) ? $bgt_settings['halva'] : '1';
 $erip = isset($bgt_settings['erip']) ? $bgt_settings['erip'] : '';
 $erip_service_no = isset($bgt_settings['erip_service_no']) ? $bgt_settings['erip_service_no'] : '99999999';
 $text_box = isset($bgt_settings['text_box']) ? $bgt_settings['text_box'] : '';
 $text_box_title = isset($bgt_settings['text_box_title']) ? $bgt_settings['text_box_title'] : '';
 $personal_details = isset($bgt_settings['personal_details']) ? $bgt_settings['personal_details'] : '';
+$personal_email = isset($bgt_settings['personal_email']) ? $bgt_settings['personal_email'] : '';
+$personal_address = isset($bgt_settings['personal_address']) ? $bgt_settings['personal_address'] : '';
 $notification_url = isset($bgt_settings['notification_url']) ? $bgt_settings['notification_url'] : '';
 $success_url = isset($bgt_settings['success_url']) ? $bgt_settings['success_url'] : '';
 $decline_url = isset($bgt_settings['decline_url']) ? $bgt_settings['decline_url'] : '';
@@ -250,6 +256,12 @@ for ($d = 1; $d <= 6; $d++) {
     </td>
 </tr>
 <tr>
+    <th><label for="card"><?php _e('Enable halva', 'begateway-payment'); ?></label></th>
+    <td><input type="checkbox" id="halva" name="bgt_settings[halva]" value="1" <?php checked( $halva ); ?> />
+    <span class="description"><?php _e('Tick this checkbox if you want to accept halva payments.', 'begateway-payment'); ?></span>
+    </td>
+</tr>
+<tr>
     <th><label for="erip"><?php _e('Enable ERIP', 'begateway-payment'); ?></label></th>
     <td><input type="checkbox" id="erip" name="bgt_settings[erip]" value="1" <?php checked( $erip ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want to accept ERIP payments.', 'begateway-payment'); ?></span>
@@ -274,9 +286,21 @@ for ($d = 1; $d <= 6; $d++) {
     </td>
 </tr>
 <tr>
-    <th><label for="personal_details"><?php _e('Require Visitor Personal Details', 'begateway-payment'); ?></label></th>
+    <th><label for="personal_details"><?php _e('Require Visitor Name', 'begateway-payment'); ?></label></th>
     <td><input type="checkbox" id="personal_details" name="bgt_settings[personal_details]" value="1" <?php checked( $personal_details ); ?> />
-    <span class="description"><?php _e('Tick this checkbox if you want your visitors to be required to enter personal details (name, address and etc) during payment process.', 'begateway-payment'); ?></span>
+    <span class="description"><?php _e('Tick this checkbox if you want your visitors to be required to enter personal name during payment process.', 'begateway-payment'); ?></span>
+    </td>
+</tr>
+<tr>
+    <th><label for="personal_email"><?php _e('Require Visitor Email', 'begateway-payment'); ?></label></th>
+    <td><input type="checkbox" id="personal_email" name="bgt_settings[personal_email]" value="1" <?php checked( $personal_email ); ?> />
+    <span class="description"><?php _e('Tick this checkbox if you want your visitors to be required to enter email during payment process.', 'begateway-payment'); ?></span>
+    </td>
+</tr>
+<tr>
+    <th><label for="personal_address"><?php _e('Require Visitor Address Details', 'begateway-payment'); ?></label></th>
+    <td><input type="checkbox" id="personal_address" name="bgt_settings[personal_address]" value="1" <?php checked( $personal_address ); ?> />
+    <span class="description"><?php _e('Tick this checkbox if you want your visitors to be required to enter address details during payment process.', 'begateway-payment'); ?></span>
     </td>
 </tr>
 <tr>
@@ -374,9 +398,12 @@ function begateway_payment_callback( $atts, $content = null ) {
       'shop_key' => '',
       'checkout_base' => '',
       'card' => '',
+      'halva' => '',
       'erip' => '',
       'erip_service_no' => '',
+      'personal_email' => '',
       'personal_details' => '',
+      'personal_address' => '',
       'notification_url' => '',
       'success_url' => '',
       'decline_url' => '',
@@ -514,11 +541,14 @@ function ajax_begateway_payment_callback() {
       $success_url = $bgt_settings['success_url'] ? esc_url($bgt_settings['success_url']) : get_site_url();
 
     $card = $_SESSION['card'];
+    $halva = $_SESSION['halva'];
     $erip = $_SESSION['erip'];
     $erip_service_no = $_SESSION['erip_service_no'];
 
     if (empty($card))
       $card = $bgt_settings['card'] ? $bgt_settings['card'] : '';
+    if (empty($halva))
+      $halva = $bgt_settings['halva'] ? $bgt_settings['halva'] : '';
     if (empty($erip))
       $erip = $bgt_settings['erip'] ? $bgt_settings['erip'] : '';
 
@@ -553,10 +583,16 @@ function ajax_begateway_payment_callback() {
     if (isset($bgt_settings['personal_details'])) {
       $transaction->setFirstNameVisible();
       $transaction->setLastNameVisible();
+    }
+
+    if (isset($bgt_settings['personal_email'])) {
+      $transaction->setEmailVisible();
+    }
+
+    if (isset($bgt_settings['personal_address'])) {
       $transaction->setCityVisible();
       $transaction->setZipVisible();
       $transaction->setCountryVisible();
-      $transaction->setEmailVisible();
       $transaction->setStateVisible();
     }
 
@@ -565,6 +601,11 @@ function ajax_begateway_payment_callback() {
     if (!empty($card)) {
       $cc = new \beGateway\PaymentMethod\CreditCard;
       $transaction->addPaymentMethod($cc);
+    }
+
+    if (!empty($halva)) {
+      $hv = new \beGateway\PaymentMethod\CreditCardHalva;
+      $transaction->addPaymentMethod($hv);
     }
 
     if (!empty($erip)) {

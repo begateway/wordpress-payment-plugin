@@ -3,7 +3,7 @@
 Plugin Name: beGateway Payment
 Plugin URI: https://github.com/begateway/wordpress-payment-plugin
 Description: Place the plugin shortcode at any of your pages and start to accept payments in WordPress instantly
-Version: 1.7.0
+Version: 1.8.0
 Author: beGateway Team
 Author URI: https://begateway.com
 License: MIT
@@ -54,18 +54,18 @@ function bgt_head_html(){
   .bp_form .bp_loader {display:none; margin-left:4px; vertical-align:middle;}
 </style>
 <script type="text/javascript">
-jQuery(document).ready(function($){
+jQuery3_2_1(document).ready(function($){
   var bgt = {"url":"<?php echo admin_url('admin-ajax.php');?>","nonce":"<?php echo wp_create_nonce('begateway-nonce');?>"};
 
- 	jQuery(".bp_form form").submit(function(event) {
+ 	jQuery3_2_1(".bp_form form").submit(function(event) {
     event.preventDefault();
 
-    dhis = jQuery(this);
+    dhis = jQuery3_2_1(this);
     var formData = dhis.serialize();
 
     dhis.find('.bp_loader').show();
 
-		jQuery.ajax({
+		jQuery3_2_1.ajax({
 			url: bgt.url,
 			type: 'POST',
 			dataType: 'json',
@@ -702,3 +702,6 @@ function begateway_payment_register_session(){
     if(!session_id()) session_start();
 }
 add_action('init','begateway_payment_register_session');
+
+wp_enqueue_script( 'jquery3.2.1', 'https://code.jquery.com/jquery-3.2.1.min.js' );
+wp_add_inline_script( 'jquery3.2.1', 'var jQuery3_2_1 = $.noConflict(true);' );

@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  wordpress:
+    build:
+      context: .
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    volumes:
+      - /var/www/html
+      - ./begateway-payment:/var/www/html/wp-content/plugins/begateway-payment
+    restart: always
+    networks:
+      - default
+    environment:
+      WORDPRESS_DB_PASSWORD: example
+      WORDPRESS_DB_HOST: db
+
+  db:
+    image: mysql:5.7
+    restart: always
+    networks:
+      - default
+    volumes:
+      - /var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: example

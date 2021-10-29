@@ -15,8 +15,10 @@ services:
     networks:
       - default
     environment:
-      WORDPRESS_DB_PASSWORD: example
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
 
   db:
     image: mysql:5.7
@@ -26,4 +28,5 @@ services:
     volumes:
       - /var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress

@@ -31,7 +31,7 @@ Optionally, you can add some more parameters in the above mentioned shortcode to
   * button_text - Title of proceed to payment button
   * button_class - Payment button CSS class
   * payment_subject - Product or service name or the reason for the payment here. The visitors will see this text
-  * other_amount - Set to 1 if you want to show ohter amount text box to your visitors so they can enter custom amount.
+  * other_amount - Set to 1 if you want to show other amount text box to your visitors so they can enter custom amount.
   * other_amount_title - Title for the other amount text box. The visitors will see this text.
   * text_box - Set to 1 if you want your visitors to be able to enter a reference text like email, web address or name.
   * text_box_title - Title for the Reference text box (ie. your web address). The visitors will see this text.

@@ -1,0 +1,5 @@
+.bp_form .bp_label {margin-bottom: 10px;}
+.bp_form .bp_input {margin-bottom: 10px;}
+.bp_form .bp_result {display: none; margin:0 0 10px 0;}
+.bp_form .bp_result .error {color:red;}
+.bp_form .bp_loader {display:none; margin-left:4px; vertical-align:middle;}

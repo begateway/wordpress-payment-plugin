@@ -3,7 +3,7 @@
 Plugin Name: beGateway Payment
 Plugin URI: https://github.com/begateway/wordpress-payment-plugin
 Description: Place the plugin shortcode at any of your pages and start to accept payments in WordPress instantly
-Version: 1.8.0
+Version: 1.8.1
 Author: beGateway Team
 Author URI: https://begateway.com
 License: MIT
@@ -41,55 +41,12 @@ function begateway_payment_init() {
 	load_plugin_textdomain('begateway-payment', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_action('init', 'begateway_payment_init');
-/*-----------------------------------------------------------------------------------*/
-/*
-/*-----------------------------------------------------------------------------------*/
+
 function bgt_head_html(){
-?>
-<style type="text/css">
-  .bp_form .bp_label {margin-bottom: 10px;}
-  .bp_form .bp_input {margin-bottom: 10px;}
-  .bp_form .bp_result {display: none; margin:0 0 10px 0;}
-  .bp_form .bp_result .error {color:red;}
-  .bp_form .bp_loader {display:none; margin-left:4px; vertical-align:middle;}
-</style>
-<script type="text/javascript">
-jQuery3_2_1(document).ready(function($){
-  var bgt = {"url":"<?php echo admin_url('admin-ajax.php');?>","nonce":"<?php echo wp_create_nonce('begateway-nonce');?>"};
-
- 	jQuery3_2_1(".bp_form form").submit(function(event) {
-    event.preventDefault();
-
-    dhis = jQuery3_2_1(this);
-    var formData = dhis.serialize();
-
-    dhis.find('.bp_loader').show();
-
-		jQuery3_2_1.ajax({
-			url: bgt.url,
-			type: 'POST',
-			dataType: 'json',
-      data: formData + '&action=bp_show&nonce='+bgt.nonce,
-			success: function(data){
-				if(data.status) {
-          if (window.location != window.parent.location) {
-            window.parent.location = data.gourl;
-          } else {
-					  window.location.href = data.gourl;
-          }
-				} else {
-				    dhis.find('.bp_loader').hide();
-            dhis.find('.bp_result').html(data.message).show();
-				}
-			}
-		});
-	});
-});
-</script>
-<?php
+  echo '<script>var bgt = ' . begateway_payment_init_var_json() . ';</script>';
 }
-add_action('wp_head', 'bgt_head_html');
 
+add_action('wp_head', 'bgt_head_html');
 /*-----------------------------------------------------------------------------------*/
 /* Add Plugin Pages
 /*-----------------------------------------------------------------------------------*/
@@ -701,7 +658,18 @@ add_action( 'widgets_init', 'register_begateway_payment_widget' );
 function begateway_payment_register_session(){
     if(!session_id()) session_start();
 }
-add_action('init','begateway_payment_register_session');
 
-wp_enqueue_script( 'jquery3.2.1', 'https://code.jquery.com/jquery-3.2.1.min.js' );
-wp_add_inline_script( 'jquery3.2.1', 'var jQuery3_2_1 = $.noConflict(true);' );
+function begateway_payment_init_var_json() {
+  return json_encode(
+    array(
+      'url' => admin_url('admin-ajax.php'),
+      'nonce' => wp_create_nonce('begateway-nonce')
+    ), JSON_UNESCAPED_SLASHES
+  );
+}
+
+add_action('init','begateway_payment_register_session');
+wp_register_script('jquery3.2.1', 'https://code.jquery.com/jquery-3.2.1.min.js');
+wp_add_inline_script('jquery3.2.1', 'var jQuery3_2_1 = $.noConflict(true);');
+wp_enqueue_script( 'begateway-payment-plugin', plugins_url('js/begateway.js', __FILE__), array('jquery3.2.1'));
+wp_enqueue_style('begateway-payment-plugin', plugins_url('css/begateway.css', __FILE__));

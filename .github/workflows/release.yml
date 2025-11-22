@@ -15,7 +15,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'begateway-payment.zip'
-        exclusions: '*.git* docker* LICENSE* Makefile DEVELOPMENT* composer* README* *.zip /*docker/* .distignore Dockerfile '
+        exclusions: '*.git* docker* LICENSE* Makefile DEVELOPMENT* composer* Readme* README* *.zip /*docker/* .distignore Dockerfile '
 
     - name: Upload Release
       uses: ncipollo/release-action@v1.12.0

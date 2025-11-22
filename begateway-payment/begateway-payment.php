@@ -3,7 +3,7 @@
 Plugin Name: beGateway Payment
 Plugin URI: https://github.com/begateway/wordpress-payment-plugin
 Description: Place the plugin shortcode at any of your pages and start to accept payments in WordPress instantly
-Version: 1.8.2
+Version: 1.8.3
 Author: beGateway Team
 Author URI: https://begateway.com
 License: MIT
@@ -66,6 +66,7 @@ add_action( 'admin_init', 'bgt_register_settings' );
 
 function bgt_options_page() {
     $bgt_settings = get_option('bgt_settings');
+    begateway_log($bgt_settings);
 ?>
 	<div class="wrap"><div id="poststuff"><div id="post-body">
 
@@ -127,8 +128,8 @@ $currency = isset($bgt_settings['currency']) ? $bgt_settings['currency'] : '';
 $payment_subject = isset($bgt_settings['payment_subject']) ? $bgt_settings['payment_subject'] : '';
 $other_amount = isset($bgt_settings['other_amount']) ? $bgt_settings['other_amount'] : '';
 $other_amount_title = isset($bgt_settings['other_amount_title']) ? $bgt_settings['other_amount_title'] : '';
-$card = isset($bgt_settings['card']) ? $bgt_settings['card'] : '1';
-$halva = isset($bgt_settings['halva']) ? $bgt_settings['halva'] : '1';
+$card = isset($bgt_settings['card']) ? $bgt_settings['card'] : '';
+$halva = isset($bgt_settings['halva']) ? $bgt_settings['halva'] : '';
 $erip = isset($bgt_settings['erip']) ? $bgt_settings['erip'] : '';
 $erip_service_no = isset($bgt_settings['erip_service_no']) ? $bgt_settings['erip_service_no'] : '99999999';
 $text_box = isset($bgt_settings['text_box']) ? $bgt_settings['text_box'] : '';
@@ -196,7 +197,7 @@ for ($d = 1; $d <= 6; $d++) {
 <?php } ?>
 <tr>
     <th><label for="other_amount"><?php _e('Show Other Amount', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="other_amount" name="bgt_settings[other_amount]" value="1" <?php checked( $other_amount ); ?> />
+    <td><input type="checkbox" id="other_amount" name="bgt_settings[other_amount]" value="1" <?php checked( $other_amount, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want to show other amount text box to your visitors so they can enter custom amount.', 'begateway-payment'); ?></span>
     </td>
 </tr>
@@ -208,19 +209,19 @@ for ($d = 1; $d <= 6; $d++) {
 </tr>
 <tr>
     <th><label for="card"><?php _e('Enable bankcard', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="card" name="bgt_settings[card]" value="1" <?php checked( $card ); ?> />
+    <td><input type="checkbox" id="card" name="bgt_settings[card]" value="1" <?php checked( $card, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want to accept bankcard payments.', 'begateway-payment'); ?></span>
     </td>
 </tr>
 <tr>
     <th><label for="card"><?php _e('Enable halva', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="halva" name="bgt_settings[halva]" value="1" <?php checked( $halva ); ?> />
+    <td><input type="checkbox" id="halva" name="bgt_settings[halva]" value="1" <?php checked( $halva, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want to accept halva payments.', 'begateway-payment'); ?></span>
     </td>
 </tr>
 <tr>
     <th><label for="erip"><?php _e('Enable ERIP', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="erip" name="bgt_settings[erip]" value="1" <?php checked( $erip ); ?> />
+    <td><input type="checkbox" id="erip" name="bgt_settings[erip]" value="1" <?php checked( $erip, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want to accept ERIP payments.', 'begateway-payment'); ?></span>
     </td>
 </tr>
@@ -232,7 +233,7 @@ for ($d = 1; $d <= 6; $d++) {
 </tr>
 <tr>
     <th><label for="text_box"><?php _e('Show Reference Text Box', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="text_box" name="bgt_settings[text_box]" value="1" <?php checked( $text_box ); ?> />
+    <td><input type="checkbox" id="text_box" name="bgt_settings[text_box]" value="1" <?php checked( $text_box, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want your visitors to be able to enter a reference text like email, web address or name.', 'begateway-payment'); ?></span>
     </td>
 </tr>
@@ -244,19 +245,19 @@ for ($d = 1; $d <= 6; $d++) {
 </tr>
 <tr>
     <th><label for="personal_details"><?php _e('Require Visitor Name', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="personal_details" name="bgt_settings[personal_details]" value="1" <?php checked( $personal_details ); ?> />
+    <td><input type="checkbox" id="personal_details" name="bgt_settings[personal_details]" value="1" <?php checked( $personal_detail, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want your visitors to be required to enter personal name during payment process.', 'begateway-payment'); ?></span>
     </td>
 </tr>
 <tr>
     <th><label for="personal_email"><?php _e('Require Visitor Email', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="personal_email" name="bgt_settings[personal_email]" value="1" <?php checked( $personal_email ); ?> />
+    <td><input type="checkbox" id="personal_email" name="bgt_settings[personal_email]" value="1" <?php checked( $personal_email, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want your visitors to be required to enter email during payment process.', 'begateway-payment'); ?></span>
     </td>
 </tr>
 <tr>
     <th><label for="personal_address"><?php _e('Require Visitor Address Details', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="personal_address" name="bgt_settings[personal_address]" value="1" <?php checked( $personal_address ); ?> />
+    <td><input type="checkbox" id="personal_address" name="bgt_settings[personal_address]" value="1" <?php checked( $personal_address, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox if you want your visitors to be required to enter address details during payment process.', 'begateway-payment'); ?></span>
     </td>
 </tr>
@@ -292,7 +293,7 @@ for ($d = 1; $d <= 6; $d++) {
 </tr>
 <tr>
     <th><label for="test_mode"><?php _e('Test mode', 'begateway-payment'); ?></label></th>
-    <td><input type="checkbox" id="test_mode" name="bgt_settings[test_mode]" value="1" <?php checked( $test_mode ); ?> />
+    <td><input type="checkbox" id="test_mode" name="bgt_settings[test_mode]" value="1" <?php checked( $test_mode, 1 ); ?> />
     <span class="description"><?php _e('Tick this checkbox to enable test mode', 'begateway-payment'); ?></span>
     </td>
 </tr>
@@ -420,8 +421,6 @@ function begateway_payment_callback( $atts, $content = null ) {
     return $out;
 }
 add_shortcode('begateway_payment', 'begateway_payment_callback');
-
-
 function ajax_begateway_payment_callback() {
 
     check_ajax_referer( 'begateway-nonce', 'nonce' );
@@ -605,6 +604,16 @@ class widget_begateway_payment extends WP_Widget {
 	function __construct() {
 	/*Constructor*/
 		$widget_ops = array('classname' => 'widget_begateway_payment ', 'description' => __( 'Widget beGateway Payment' , 'begateway-payment' ) );
+
+        wp_enqueue_script( 'begateway-payment-plugin',
+            plugins_url('js/begateway.js', __FILE__),
+            array('jquery'),
+            '1.0.0'
+        );
+        wp_enqueue_style('begateway-payment-plugin',
+            plugins_url('css/begateway.css', __FILE__)
+        );
+
 		parent::__construct('begateway_payment', __( 'beGateway Payment' , 'begateway-payment' ), $widget_ops);
     }
 
@@ -667,9 +676,14 @@ function begateway_payment_init_var_json() {
     ), JSON_UNESCAPED_SLASHES
   );
 }
+function begateway_log( $log ) {
+    if ( true === WP_DEBUG ) {
+        if ( is_array( $log ) || is_object( $log ) ) {
+            error_log( print_r( $log, true ) );
+        } else {
+            error_log( $log );
+        }
+    }
+}
 
 add_action('init','begateway_payment_register_session');
-wp_register_script('jquery3.2.1', 'https://code.jquery.com/jquery-3.2.1.min.js');
-wp_add_inline_script('jquery3.2.1', 'var jQuery3_2_1 = $.noConflict(true);');
-wp_enqueue_script( 'begateway-payment-plugin', plugins_url('js/begateway.js', __FILE__), array('jquery3.2.1'));
-wp_enqueue_style('begateway-payment-plugin', plugins_url('css/begateway.css', __FILE__));

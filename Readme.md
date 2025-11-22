@@ -5,7 +5,7 @@
 ### Installation
 
   * Backup your WordPress and database
-  * Download [begateway-payment.zip](https://github.com/beGateway/wordpress-payment-plugin/blob/master/begateway-payment.zip?raw=true)
+  * Download [the latest plugin version](https://github.com/begateway/wordpress-payment-plugin/releases)
   * Start up the administrative panel for WordPress (www.yourshop.com/wp-admin/)
   * Choose _Plugins -> Add New_
   * Upload the payment module archive via **Upload Plugin**.
@@ -62,9 +62,7 @@ The shortcode will show a drop-down list with two products to pay: Product 1 wit
 
 Tested and developed with:
 
-  * WordPress 4.2.x / 4.3.x
-
-PHP 5.3+ is required.
+  * WordPress 4.2.x / 4.3.x / 6.8.x
 
 ### Demo credentials
 
@@ -94,7 +92,7 @@ Issue pull requests or send feature requests.
 ### Установка
 
   * Создайте резервную копию вашего WordPress и базы данных
-  * Загрузите [begateway-payment.zip](https://github.com/beGateway/wordpress-payment-plugin/blob/master/begateway-payment.zip?raw=true)
+  * Загрузите [последнюю версию плагина](https://github.com/begateway/wordpress-payment-plugin/releases)
   * Зайдите в панель администратора WordPress (www.yourshop.com/wp-admin/)
   * Выберите _Плагины -> Добавить новый_
   * Загрузите модуль через **Добавить новый**
@@ -151,9 +149,7 @@ Issue pull requests or send feature requests.
 
 Разработанно и протестированно с:
 
-  * WordPress 4.2.x / 4.3.x
-
-Требуется PHP 5.3+
+  * WordPress 4.2.x / 4.3.x / 6.8.x
 
 ### Тестовые данные
 
